@@ -1,0 +1,11 @@
+.user{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 5px;
+  padding-block: 5px;
+  border-bottom: 1px solid grey;
+  &__cell{
+    padding: 5px 10px 5px 0;
+    word-break: break-all;
+  }
+}

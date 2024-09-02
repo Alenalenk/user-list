@@ -1,32 +1,32 @@
-.form{
-  &__label{
+.form {
+  &__label {
     display: flex;
     flex-direction: column;
     row-gap: 5px;
     text-transform: uppercase;
     font-weight: 600;
 
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
-  &__input{
+  &__input {
     width: 100%;
     box-sizing: border-box;
     border: 1px solid transparent;
     border-radius: 2px;
     padding: 5px;
-    transition: border 0.3s ease,
-                box-shadow 0.3s ease;
+    transition:
+      border 0.3s ease,
+      box-shadow 0.3s ease;
 
-    &:hover{      
+    &:hover {
       box-shadow: -1px -1px 0.2px rgb(166, 166, 253);
     }
 
-    &:focus{      
+    &:focus {
       border: 1px solid rgb(3, 3, 154);
       outline: 1px solid rgb(3, 3, 154);
-      
     }
 
     &:-webkit-autofill {

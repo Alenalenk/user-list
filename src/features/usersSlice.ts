@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User } from '../types/User';
-import { getUsers } from '../api/users';
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "../types/User";
+import { getUsers } from "../api/users";
 
 type Query = {
   [key in keyof User]?: string;
@@ -19,10 +19,10 @@ export interface UsersState {
 const initialState: UsersState = {
   users: [],
   query: {
-    name: '',
-    username: '',
-    email: '',
-    phone: '',
+    name: "",
+    username: "",
+    email: "",
+    phone: "",
   },
   filteredUsers: [],
   loader: false,
@@ -30,30 +30,35 @@ const initialState: UsersState = {
 };
 
 // Async thunk to fetch users data from the API.
-export const init = createAsyncThunk('users/fetch', async () => {
+export const init = createAsyncThunk("users/fetch", async () => {
   return getUsers();
 });
 
 // Create a slice with reducers and extra reducers for handling state updates.
 export const { reducer, actions } = createSlice({
-  name: 'users',
+  name: "users",
   initialState: initialState,
   reducers: {
-    filtered: (state, action: PayloadAction<{ name: keyof User; value: string }>) => {
-      const {name, value} = action.payload;
+    filtered: (
+      state,
+      action: PayloadAction<{ name: keyof User; value: string }>,
+    ) => {
+      const { name, value } = action.payload;
       state.query[name] = value;
 
-      state.filteredUsers = state.users.filter(item => {
+      state.filteredUsers = state.users.filter((item) => {
         return Object.entries(state.query).every(([key, value]) => {
-          const regExp = new RegExp(value.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
-          return regExp.test((item[key as keyof User] ?? '').toString());          
+          const regExp = new RegExp(
+            value.trimStart().replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+            "i",
+          );
+          return regExp.test((item[key as keyof User] ?? "").toString());
         });
       });
-    }
-
+    },
   },
   // Handle asynchronous actions with extra reducers.
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
       .addCase(init.fulfilled, (state, action) => {
         state.users = action.payload;
@@ -67,5 +72,5 @@ export const { reducer, actions } = createSlice({
         state.error = true;
         state.loader = false;
       });
-  },  
+  },
 });

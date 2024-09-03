@@ -7,9 +7,9 @@ DESCRIPTION
 
 2. Used AsyncThunk to fetch user data from the API.
 
-3. Used createSlice with an initial state containing: an initial array, a filtered array, query, a loading status, and an error status.
+3. Used createSlice with an initial state containing: an initial array, a filtered array, queries, a loading status, and an error status.
 
-4. Created reducers to filter the initial array.
+4. Created reducer to filter the initial array.
 
 5. Handled asynchronous actions with extra reducers, managing fulfilled, pending, and rejected states.
 

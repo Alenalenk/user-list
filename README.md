@@ -1,4 +1,4 @@
-#USER LIST
+# USER LIST
 [DEMO](https://alenalenk.github.io/user-list/)
 
 DESCRIPTION
